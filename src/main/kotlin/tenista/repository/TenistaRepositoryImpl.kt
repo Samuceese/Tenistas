@@ -15,7 +15,9 @@ class TenistaRepositoryImpl(
 
     override fun getAll(): List<Tenista> {
         logger.debug { "Obteniendo todos los tenistas" }
-        db.selectAllTenista().executeAsList().map { it.toTenista() }
+        val lista= mutableListOf<Tenista>()
+        db.selectAllTenista().executeAsList().map { it.toTenista() }.forEach{lista.add(it)}
+        return lista
     }
 
     override fun getById(id: Int): Tenista? {

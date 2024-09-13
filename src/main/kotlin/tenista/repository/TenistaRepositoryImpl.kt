@@ -21,11 +21,14 @@ class TenistaRepositoryImpl(
     }
 
     override fun getById(id: Int): Tenista? {
-        TODO("Not yet implemented")
+        logger.debug { "Obteniendo tenista con id $id" }
+        db.selectTenistaByid(id.toLong()).executeAsList().map { it.toTenista() }
+        return null
     }
 
     override fun save(tenista: Tenista): Tenista {
-        TODO("Not yet implemented")
+        logger.debug { "Guardando tenista" }
+        return db.insertTenista(tenista.nombre,tenista.pais,tenista.altura.toLong(),tenista.peso.toLong(),tenista.puntos.toLong(),tenista.mano,tenista.fecha_nacimiento,tenista.created_at,tenista.updated_at)
     }
 
     override fun update(id: Int, tenista: Tenista): Tenista? {

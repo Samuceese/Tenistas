@@ -3,8 +3,8 @@ package tenista.models
 import java.time.LocalDate
 import java.time.LocalDateTime
 
-class Tenista(
-    val id: Int,
+data class Tenista(
+    val id: Long = -1,
     val nombre: String,
     val pais: String,
     val altura: Int,

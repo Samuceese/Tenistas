@@ -11,7 +11,7 @@ private val logger = logging()
 fun TenistaEntity.toTenista(): Tenista{
     logger.debug { "Mapeando TenistaEntity a Tenista" }
     return Tenista(
-        id = this.id.toInt(),
+        id = this.id.toLong(),
         nombre = this.nombre,
         pais = this.pais,
         altura = this.altura.toInt(),

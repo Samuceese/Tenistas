@@ -28,15 +28,27 @@ class TenistaRepositoryImpl(
 
     override fun save(tenista: Tenista): Tenista {
         logger.debug { "Guardando tenista" }
-        return db.insertTenista(tenista.nombre,tenista.pais,tenista.altura.toLong(),tenista.peso.toLong(),tenista.puntos.toLong(),tenista.mano,tenista.fecha_nacimiento,tenista.created_at,tenista.updated_at)
+        db.transaction {
+            db.insertTenista(tenista.nombre,tenista.pais,tenista.altura.toLong(),tenista.peso.toLong(),tenista.puntos.toLong(),tenista.mano,tenista.fecha_nacimiento.toString(),tenista.created_at.toString(),tenista.updated_at.toString())
+        }
+        return tenista
     }
 
     override fun update(id: Int, tenista: Tenista): Tenista? {
-        TODO("Not yet implemented")
+        logger.debug { "Actualizando tenista" }
+
+        val result = getById(id)?: return null
+        db.updateTenista(nombre = result.nombre,pais = result.pais,altura = result.altura.toLong(),peso = result.peso.toLong(),puntos = result.puntos.toLong(),mano = result.mano,fecha_nacimiento = result.fecha_nacimiento.toString(),created_at = result.created_at.toString(),updated_at = result.updated_at.toString())
+
+        return tenista
     }
 
     override fun deleteById(id: Int): Tenista? {
-        TODO("Not yet implemented")
-    }
+        logger.debug { "Borrando tenista por id $id" }
 
+        val result = getById(id)?: return null
+
+        db.deleteTenistaById(result.id)
+        return result
+    }
 }

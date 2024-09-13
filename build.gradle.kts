@@ -51,3 +51,14 @@ sqldelight {
         }
     }
 }
+
+tasks.jar {
+    manifest {
+        archiveFileName.set("torneo_tenis.jar")
+        attributes["Main-Class"] = "MainKt"
+    }
+    configurations["compileClasspath"].forEach { file: File ->
+        from(zipTree(file.absoluteFile))
+    }
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}

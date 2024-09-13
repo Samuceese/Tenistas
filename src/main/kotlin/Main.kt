@@ -16,7 +16,7 @@ fun main(args:Array<String>){
 
 
     try {
-        val contenidoEntrada = File(ficheroEntrada).readText()
+        File(ficheroEntrada).readText()
         logger.debug { "El archivo de entrada se ha leido correctamente" }
     }
     catch (e:Exception){

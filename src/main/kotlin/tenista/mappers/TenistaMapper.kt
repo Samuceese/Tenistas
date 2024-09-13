@@ -1,4 +1,4 @@
-package tenista.mapper
+package tenista.mappers
 
 import database.TenistaEntity
 import locale.returnDateTimeString

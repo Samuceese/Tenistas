@@ -9,7 +9,7 @@ import tenista.models.Tenista
 
 private val logger = logging()
 
-class CachePersonasImpl(
+class CacheTenistasImpl(
     private val cacheSize : Int
 ) : Cache<Long,Tenista> {
 

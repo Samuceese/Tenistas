@@ -1,8 +1,8 @@
-package tenista.repository
+package tenista.repositories
 
 import database.SqlDelightManager
 import org.lighthousegames.logging.logging
-import tenista.mapper.toTenista
+import tenista.mappers.toTenista
 import tenista.models.Tenista
 
 private val logger = logging()

@@ -2,7 +2,7 @@ import cache.CacheTenistasImpl
 import config.Config
 import database.SqlDelightManager
 import org.lighthousegames.logging.logging
-import tenista.repositories.TenistaRepositoryImpl
+import tenista.repository.TenistaRepositoryImpl
 import tenista.services.TenistaServiceImpl
 import tenista.storages.StorageCsv
 import kotlin.io.path.Path

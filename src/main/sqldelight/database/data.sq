@@ -27,9 +27,8 @@ updateTenista:
 UPDATE TenistaEntity SET nombre=?,pais=?,altura=?,peso=?,puntos=?,mano=?,fecha_nacimiento=?,created_at=?,updated_at=?;
 
 insertTenista:
-INSERT INTO TenistaEntity (nombre, pais, altura, peso, puntos, mano, fecha_nacimiento, created_at, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
-
+INSERT INTO TenistaEntity(nombre,pais,altura,peso,puntos,mano,fecha_nacimiento,created_at,updated_at)
+    VALUES (?,?,?,?,?,?,?,?,?);
 
 tenistaOrdenadosRanking:
 SELECT *

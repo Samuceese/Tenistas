@@ -1,9 +1,10 @@
-package tenista.repositories
+package tenista.repository
 
 import database.SqlDelightManager
 import org.lighthousegames.logging.logging
 import tenista.mappers.toTenista
 import tenista.models.Tenista
+import tenista.repositories.TenistaRepository
 
 private val logger = logging()
 
@@ -29,17 +30,7 @@ class TenistaRepositoryImpl(
     override fun save(tenista: Tenista): Tenista {
         logger.debug { "Guardando tenista" }
         db.transaction {
-            db.insertTenista(
-                tenista.nombre,
-                tenista.pais,
-                tenista.altura.toLong(),
-                tenista.peso.toLong(),
-                tenista.puntos.toLong(),
-                tenista.mano,
-                tenista.fecha_nacimiento.toString(),
-                tenista.created_at?.toString(),
-                tenista.updated_at?.toString()
-            )
+            db.insertTenista(tenista.nombre,tenista.pais,tenista.altura.toLong(),tenista.peso.toLong(),tenista.puntos.toLong(),tenista.mano,tenista.fecha_nacimiento.toString(),tenista.created_at.toString(),tenista.updated_at.toString())
         }
         return tenista
     }

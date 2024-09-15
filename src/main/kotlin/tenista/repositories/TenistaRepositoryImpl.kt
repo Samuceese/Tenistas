@@ -29,7 +29,17 @@ class TenistaRepositoryImpl(
     override fun save(tenista: Tenista): Tenista {
         logger.debug { "Guardando tenista" }
         db.transaction {
-            db.insertTenista(tenista.nombre,tenista.pais,tenista.altura.toLong(),tenista.peso.toLong(),tenista.puntos.toLong(),tenista.mano,tenista.fecha_nacimiento.toString(),tenista.created_at.toString(),tenista.updated_at.toString())
+            db.insertTenista(
+                tenista.nombre,
+                tenista.pais,
+                tenista.altura.toLong(),
+                tenista.peso.toLong(),
+                tenista.puntos.toLong(),
+                tenista.mano,
+                tenista.fecha_nacimiento.toString(),
+                tenista.created_at?.toString(),
+                tenista.updated_at?.toString()
+            )
         }
         return tenista
     }

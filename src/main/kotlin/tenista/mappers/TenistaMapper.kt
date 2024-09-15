@@ -19,7 +19,7 @@ fun TenistaEntity.toTenista(): Tenista{
         puntos = this.puntos.toInt(),
         mano = this.mano,
         fecha_nacimiento = this.fecha_nacimiento.returnDateTimeString(),
-        created_at = this.created_at.returnLocalDateTimeString(),
-        updated_at = this.updated_at.returnLocalDateTimeString()
+        created_at = this.created_at?.returnLocalDateTimeString(),
+        updated_at = this.updated_at?.returnLocalDateTimeString()
     )
 }

@@ -1,26 +1,29 @@
+import cache.CacheTenistasImpl
+import config.Config
+import database.SqlDelightManager
 import org.lighthousegames.logging.logging
-import java.io.File
+import tenista.repositories.TenistaRepositoryImpl
+import tenista.services.TenistaServiceImpl
+import tenista.storages.StorageCsv
+import kotlin.io.path.Path
 
 private val logger = logging()
 
 fun main(args:Array<String>){
 
-    if (args.size < 1 || args.size > 2) {
-        println("Uso: java -jar torneo_tenis.jar <fichero_entrada.csv> [<fichero_salida.xxx>]")
-        return
-    }
+    val servicio = TenistaServiceImpl(
+        TenistaRepositoryImpl(SqlDelightManager(Config)),
+        CacheTenistasImpl(5),
+        StorageCsv()
+    )
 
-    val ficheroEntrada = args[0]
-    val ficheroSalida = if (args.size == 2) args[1] else "salida.json"
+    //val validator = TenistaValidator()
+    //validator.validarCsv(args)
 
 
+    val filePersonasCsv = Path("src","main","resources","data.csv").toFile()
+    servicio.leer(filePersonasCsv)
 
-    try {
-        File(ficheroEntrada).readText()
-        logger.debug { "El archivo de entrada se ha leido correctamente" }
-    }
-    catch (e:Exception){
-        logger.error { "Error al procesar los archivos ${e.message}" }
-    }
+    val tenistas = servicio.getAll()
 }
 

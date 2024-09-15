@@ -1,22 +1,23 @@
 package tenista.services
 
 import cache.CacheTenistasImpl
-import com.github.michaelbull.result.Err
-import com.github.michaelbull.result.Ok
-import com.github.michaelbull.result.Result
-import com.github.michaelbull.result.andThen
+import com.github.michaelbull.result.*
 import org.lighthousegames.logging.logging
 import tenista.errors.TenistaError
 import tenista.models.Tenista
 import tenista.repositories.TenistaRepository
+import tenista.storages.StorageCsv
+import tenista.storages.leerFichero
+import java.io.File
 
 private val logger = logging()
 
 class TenistaServiceImpl(
     private val repository : TenistaRepository,
-    private val cache : CacheTenistasImpl
+    private val cache : CacheTenistasImpl,
+    private val storage : StorageCsv
 
-    ) : TenistasService {
+    ) : TenistasService , leerFichero {
     override fun getAll(): Result<List<Tenista>, TenistaError> {
         logger.debug { "Obteniendo todos los tenistas" }
         return Ok(repository.getAll())
@@ -55,6 +56,15 @@ class TenistaServiceImpl(
             cache.remove(id.toLong())
             Ok(it)}
         ?: Err(TenistaError.TenistaErrorValida("Error al borrar por id $id"))
+    }
+
+    override fun leer(file: File): Result<List<Tenista>, TenistaError> {
+        logger.debug { "Leyendo fichero $file" }
+        return storage.leer(file)
+            .onSuccess {
+                it.forEach { repository.save(it) }
+                Ok(it)
+            }
     }
 }
 

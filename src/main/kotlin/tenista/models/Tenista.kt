@@ -12,6 +12,11 @@ data class Tenista(
     val puntos: Int,
     val mano: String,
     val fecha_nacimiento: LocalDate,
-    val created_at: LocalDateTime,
-    val updated_at: LocalDateTime,
-)
+    val created_at: LocalDateTime? = null,
+    val updated_at: LocalDateTime? = null
+){
+
+    override fun toString(): String {
+        return "Tenista(id=$id, nombre='$nombre', pais='$pais', altura=$altura, peso=$peso, puntos=$puntos, mano='$mano', fecha_nacimiento=$fecha_nacimiento, created_at=$created_at, updated_at=$updated_at)"
+    }
+}

@@ -23,7 +23,7 @@ class SqlDelightManager(
 
     fun initQueries(): DataQueries {
         val driver = if (Config.databaseInMemory) {
-            logger.debug { "SqlDeLightClient - InMemory" }
+            logger.debug { "SqlDeLightClient" }
             JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY)
         } else {
             logger.debug { "SqlDeLightClient - File: ${Config.dataBaseUrl}" }

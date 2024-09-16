@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
+import tenista.validator.TenistaValidator
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TenistaValidatorTest {

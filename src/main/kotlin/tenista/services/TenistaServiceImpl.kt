@@ -26,7 +26,7 @@ class TenistaServiceImpl(
     override fun getById(id: Int): Result<Tenista, TenistaError> {
         logger.debug { "Obteniendo tenista por id $id" }
         return repository.getById(id)?.let {
-            cache.put(it.id,it)
+            cache.put(it.id.toLong(),it)
             logger.debug { "Guardando id en la cache" }
             Ok(it) }?:
         Err(TenistaError.TenistaErrorValida("Error al obtener la por id $id"))
@@ -35,7 +35,7 @@ class TenistaServiceImpl(
     override fun save(tenista: Tenista): Result<Tenista, TenistaError> {
         logger.debug { "Guardando tenista" }
         return Ok(repository.save(tenista)).andThen {
-            cache.put(it.id,it)
+            cache.put(it.id.toLong(),it)
             logger.debug { "Guardando id en la cache" }
             Ok(it)
             Err(TenistaError.TenistaErrorValida("Error al guardar el tenista"))

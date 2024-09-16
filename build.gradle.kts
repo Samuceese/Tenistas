@@ -14,8 +14,8 @@ repositories {
 }
 
 dependencies {
-    // CSV
-    implementation("com.opencsv:opencsv:5.8")
+    // Mordant
+    implementation("com.github.ajalt.mordant:mordant:2.0.0-beta9")
     // Logger
     implementation("org.lighthousegames:logging:1.3.0")
     implementation("ch.qos.logback:logback-classic:1.4.14")

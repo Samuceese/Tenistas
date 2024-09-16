@@ -11,7 +11,7 @@ private val logger = logging()
 
 class CacheTenistasImpl(
     private val cacheSize : Int
-) : Cache<Long,Tenista> {
+) : Cache<Long, Tenista> {
 
     private val cache = mutableMapOf<Long,Tenista>()
 

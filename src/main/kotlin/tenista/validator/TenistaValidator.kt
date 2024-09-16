@@ -1,11 +1,6 @@
-package validator
+package tenista.validator
 
-import com.github.michaelbull.result.Err
-import com.github.michaelbull.result.Ok
-import com.github.michaelbull.result.Result
 import org.lighthousegames.logging.logging
-import tenista.errors.TenistaError
-import tenista.models.Tenista
 import java.io.File
 
 private val logger = logging()
@@ -18,14 +13,18 @@ class TenistaValidator {
             return false
         }
 
-        val archivoEntrada = args[0]
+        val archivoEntrada = File(args[0])
 
-        if (!archivoEntrada.endsWith(".csv")) {
+        if (!archivoEntrada.name.endsWith(".csv")) {
             logger.error { "El archivo de entrada no tiene el formato .csv." }
+            return false
+        }
+
+        if (!archivoEntrada.exists() || !archivoEntrada.isFile) {
+            logger.error { "El archivo de entrada no existe o no es un archivo válido." }
             return false
         }
 
         return true
     }
-
 }
